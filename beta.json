@@ -1,6 +1,6 @@
 {
     "Parameters": {
-        "SamMultipler": "1",
+        "SamMultipler": "15",
         "OriginUrl": "http://serverless-app-640625518985-us-west-2-squirrel.s3-website-us-west-2.amazonaws.com/"
     }
 }
