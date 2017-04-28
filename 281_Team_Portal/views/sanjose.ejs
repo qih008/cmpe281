@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Starbucks</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script src="/angularjs/sanjoseAngularJS.js"></script>
+  </head>
+  <style>
+      #header {
+	        margin: 0px 10%;
+	        padding: 0;
+	        height: 8%;
+	        width: 80%;
+            border-bottom:2px solid #D3D3D3;
+        }
+      #header .title {
+            position: relative;
+            text-align: left;
+            color:	#696969;
+            top: 20px;
+            font-family:"Times New Roman", Times, serif;
+            font-size:40px;
+        }
+      #container{
+          width:80%;
+          top:30px;
+          margin: 0px 10%;
+      }
+      ul {
+          float: left;
+          margin-left: 0;         
+          padding-left: 0;  
+          width: 20%;
+          list-style-type: none; 
+      }
+      
+      ul a{
+          display: block;
+          width: 200px;
+          text-align: center;
+          height: 40px;
+          line-height: 40px;
+          background: #f8f8f8;
+        }
+      ul .active a, ul a:hover{
+          background: #228B22;
+          color: #ffffff;
+      }
+      
+      #right {
+          position: relative;
+          float: right;
+          top:50px;
+          left:50px;
+          margin-right: 0;         
+          padding-right: 0;  
+          width: 20%;
+          text-align: left;
+      }
+      #center {
+          position: relative;
+          top: 50px;
+          margin: 0 auto;
+          width:60%;
+          
+      }
+      th {color: #696969;}
+      td {color: #696969;}
+      
+      #center table tr td { float: left}
+      
+      #a {
+          	float: left;
+            width: 15%;
+            height:auto;
+            margin:10px;
+      }
+      #center table tr td table tr td img{
+          width: 345px;
+      }
+      
+      #inputForm {
+          position: fixed;
+          left: 0px;
+          top: 0px;
+          height: 100%;
+          width:100%;
+          background-color:black;
+          background-color:rgba(0,0,0,0.2); 
+      }
+      
+  </style>
+  <body>
+      <div ng-app="sanJose" ng-controller="myCtrl">
+          <div id="header">
+              <p class = "title">Starbucks
+              
+              </p>
+          </div>
+          <div id="container">
+              <nav role="navigation" aria-label="context">
+                  <ul>
+                      <li class="active" href=""><a>San Jose</a></li>
+                      <li href=""><a>San Francisco</a></li>
+                  </ul>
+              </nav>
+              <div id = "right">
+                  <table ng-repeat = "i in orders" style = "float: bottom; margin: 10px; width: 100%; border: 1px solid #696969;" ng-click="showOrder(i)">
+                      <tr><th>{{i.price}}</th></tr> 
+                  </table>
+                  
+              </div>
+              <div id = "center">
+                  <table ng-repeat = "i in drinks" style = "float: bottom; margin: 30px">
+                      <tr><th>{{i.type}}</th></tr> 
+                      <tr><td ng-repeat = "j in i.drinks" style = "float: left;  margin: 10px;">
+                              <table>
+                                  <tr><td><img src = {{j.url}} style = "width: 150px; height: 150px;" ng-click="showProduct(j.name)"/></td></tr>
+                                  <tr><td><div style = "width: 150px; height: 40px;"><p ng-click="showProduct(j.name)">{{j.name}}</p></div></td></tr>
+                              </table>
+                          </td>
+                      </tr>
+                  </table>
+              </div>
+          </div>
+          
+          <div id = "inputForm" ng-show = "showEditOrder">
+              
+            <table width="100%" height="100%" >
+                <tr>
+                    <td align="left" valign="middle">
+                        <div style = "margin-left:40%; margin-right:40%; background-color: #FFFFFF;">
+                            <p>{{orderDetail.items[0].name}}</p> <p>Total Price: {{orderDetail.price}}</p>
+                            <p>Ice: </p>
+                            <select ng-model = "orderDetail.items[0].ice" ng-options = "option.value as option.name for option in iceChoice" ng-selected="orderDetail.items[0].ice">
+                            </select>
+                            <p>Size: </p>
+                            <select ng-model = "orderDetail.items[0].size" 
+                                    ng-options = "option.value as option.name for option in sizeChoice" 
+                                    ng-selected="orderDetail.items[0].size" 
+                                    ng-change = "changeInUpdate(orderDetail.items[0], orderDetail)">
+                            </select>
+                            <p>Price: </p>
+                            <p>{{orderDetail.items[0].price}}</p>
+                            <div>Number: </div> <input type = "number" ng-model = "orderDetail.items[0].number" ng-change = "changeInUpdate(orderDetail.items[0], orderDetail)" /> <br>
+                            <a class="btn btn-success"  ng-click="updateOrder(orderDetail)">Update</a>
+                            <a class="btn btn-success"  ng-click="deleteOrder(orderDetail)">Delete</a>
+                            <a class="btn btn-success"  ng-click="hideOrder()">Cancel</a>  
+                        </div>
+                    </td>
+                </tr>
+                
+            </table>
+              
+          </div>
+          
+          <div id = "inputForm" ng-show = "showCreateOrder">
+              
+            <table width="100%" height="100%" >
+                <tr>
+                    <td align="left" valign="middle">
+                        <div style = "margin-left:40%; margin-right:40%; background-color: #FFFFFF;">
+                            <p>{{newOrder.name}}</p> 
+                            <p>Ice: </p>
+                            <select ng-model = "newOrder.ice" ng-options = "option.value as option.name for option in iceChoice">
+                            </select>
+                            <p>Size: </p>
+                            <select ng-model = "newOrder.size" 
+                                    ng-options = "option.value as option.name for option in sizeChoice" 
+                                    ng-change = "changeInCreate(newOrder)">
+                            </select>
+                            <p>Price: </p>
+                            <p>{{newOrder.price}}</p>
+                            <div>Number: </div> <input type = "number" ng-model = "newOrder.number" ng-change = "changeInCreate(newOrder)" /> <br>
+                            <a class="btn btn-success"  ng-click="createOrder(newOrder)">Create</a>
+                            <a class="btn btn-success"  ng-click="hideOrder()">Cancel</a>  
+                        </div>
+                    </td>
+                </tr>
+                
+            </table>
+              
+          </div>
+      </div>
+      
+      
+      
+
+
+  </body>
+</html>
+
+
+

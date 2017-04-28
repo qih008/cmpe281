@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Starbucks</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+  </head>
+  <style>
+      #header {
+	        margin: 0px 10%;
+	        padding: 0;
+	        height: 8%;
+	        width: 80%;
+            border-bottom:2px solid #D3D3D3;
+        }
+      #header .title {
+            position: relative;
+            text-align: left;
+            color:	#696969;
+            top: 20px;
+            font-family:"Times New Roman", Times, serif;
+            font-size:40px;
+        }
+      #container{
+          width:80%;
+          top:30px;
+          margin: 0px 10%;
+      }
+      ul {
+          float: left;
+          margin-left: 0;         
+          padding-left: 0;  
+          width: 20%;
+          list-style-type: none; 
+      }
+      
+      ul a{
+          display: block;
+          width: 200px;
+          text-align: center;
+          height: 40px;
+          line-height: 40px;
+          background: #f8f8f8;
+        }
+      ul .active a, ul a:hover{
+          background: #000080;
+          color: #ffffff;
+      }
+      
+      #right {
+          position: relative;
+          float: right;
+          top:50px;
+          left:50px;
+          margin-right: 0;         
+          padding-right: 0;  
+          width: 20%;
+          text-align: left;
+      }
+      #center {
+          position: relative;
+          top: 50px;
+          margin: 0 auto;
+          width:60%;
+          
+      }
+      th {color:	#696969;}
+      td {color:	#696969;}
+      
+      #submittedImage {
+          
+          width: 40%;
+          height: auto;
+          border-color: #ffffff;
+          
+      }
+      
+    
+  </style>
+  <body>
+      <div ng-app="home" ng-controller="myCtrl">
+          <div id="header">
+              <p class = "title">Starbucks
+              <a class="btn btn-success" style = "float: right;" ng-click="signOut()">Sign Out</a>
+              </p>
+          </div>
+          <div id="container">
+              <nav role="navigation" aria-label="context">
+                  <ul>
+                      <li class="active" href=""><a>San Jose</a></li>
+                      <li class="active" href=""><a>San Francisco</a></li>
+                  </ul>
+              </nav>
+              <div id = "right">
+                   <table>
+                       <tr><td><p>{{subDetailTitle}}</p></td></tr>
+                       <tr><td><a href="/{{name_}}/file/download/{{download}}">{{download}}</a></td></tr>
+                   </table>
+              </div>
+              <div id = "center">
+                  <table width ="100%;" style="table-layout:fixed">
+                      <tr><th colspan = "2">UML Parser Project Submission<br><br></th></tr>
+                      <tr style = "border-top:2px solid #D3D3D3; line-height:30px;">
+                          <td>Points: 10</td>
+                          <td>File types: zip</td>
+                          <td>Grade: {{grade}}</td>
+                          <td>Completed: {{completed}}</td>
+                      </tr>
+                      <tr style = "border-bottom:2px solid #D3D3D3; line-height:30px;"><td  colspan = "4" >Comments: {{comments}}</td></tr>
+                      <tr><td><br><br><br><br></td></tr>
+                  </table>
+
+                  <table width ="100%;" style="table-layout:fixed" ng-show = "showSubmittedImage">
+                      <tr style = "text-align: center"><td colspan = "4" ><img id = "submittedImage" src= {{submittedImage}} /><br></td></tr>
+                  </table>
+                  <table>
+                      <tr><td><br><br><br><br><br></td></tr>
+                  </table>
+                  <table width ="100%;" style="table-layout:fixed" ng-show = "showSubmit">
+                      <tr style = "border-bottom:2px solid #D3D3D3;border-top:2px solid #D3D3D3">
+                          <td style = "border-left:2px solid #D3D3D3; border-right:2px solid #D3D3D3" colspan = "4">
+                              <form>
+                                  <label for="resource">Submission</label>
+                                  <input type="file" ngf-select ng-model="file" name="file" /> <br>
+                                  <img src= {{uploadImage}} /><br>
+                                  <a class="btn btn-primary" ng-click = "upload()">UpLoad</a>
+                                  <a class="btn btn-primary" ng-click = "submit()">Submit</a>
+                              </form>
+                          </td>
+                      </tr>
+                      
+                  </table>
+              </div>
+          </div>
+      </div>
+
+  </body>
+</html>
