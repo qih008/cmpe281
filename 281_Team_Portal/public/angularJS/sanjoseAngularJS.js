@@ -57,7 +57,7 @@ app.controller('myCtrl', function ($scope, $http) {
         $scope.newOrder = {};
     };
     
-    $scope.changeInCreate = function(order) {
+    $scope.change = function(order) {
         var i = 0;
         if ((undefined != order.number) && (undefined != order.size)) {
 
@@ -74,8 +74,8 @@ app.controller('myCtrl', function ($scope, $http) {
         
         $http({
 			method : "POST",
-			url : '/San Jose/order',
-            body: order
+			url : '/San_Jose/order',
+            data: order
 		  }).success(function (response) {
              
              
@@ -97,8 +97,8 @@ app.controller('myCtrl', function ($scope, $http) {
         
          $http({
 			method : "PUT",
-			url : '/San Jose/order/' + order._id,
-            body: order
+			url : '/San_Jose/order/' + order._id,
+            data: order
 		  }).success(function (response) {
              
              
@@ -120,7 +120,7 @@ app.controller('myCtrl', function ($scope, $http) {
         
          $http({
 			method : "DELETE",
-			url : '/San Jose/order/' + order._id
+			url : '/San_Jose/order/' + order._id
 		  }).success(function(response) {
              
              $scope.hideOrder();
@@ -134,28 +134,6 @@ app.controller('myCtrl', function ($scope, $http) {
         
     };
     
-    
-    
-    $scope.changeInUpdate = function (item, order) {
-        
-        var i = 0;
-        
-        for (i = 0; i < $scope.sizePrice.length; i++) {
-            if (item.size === $scope.sizePrice[i].size) {
-                item.price = parseFloat(($scope.sizePrice[i].price * item.number).toFixed(2));
-            }
-        }
-        
-        order.price = 0;
-        
-        for (i = 0; i < order.items.length; i++) {
-            order.price += order.items[i].price;
-        }
-        
-        order.price = order.price.toFixed(2);
-        
-        return;
-    };
     
     
     $http({
@@ -177,7 +155,7 @@ app.controller('myCtrl', function ($scope, $http) {
         
         $http({
 			method : "GET",
-			url : '/San Jose/orders'
+			url : '/San_Jose/orders'
 		  }).success(function(response) {
                  
                  

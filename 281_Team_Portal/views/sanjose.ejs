@@ -132,19 +132,19 @@
                 <tr>
                     <td align="left" valign="middle">
                         <div style = "margin-left:40%; margin-right:40%; background-color: #FFFFFF;">
-                            <p>{{orderDetail.items[0].name}}</p> <p>Total Price: {{orderDetail.price}}</p>
+                            <p>{{orderDetail.name}}</p> <p>Total Price: {{orderDetail.price}}</p>
                             <p>Ice: </p>
-                            <select ng-model = "orderDetail.items[0].ice" ng-options = "option.value as option.name for option in iceChoice" ng-selected="orderDetail.items[0].ice">
+                            <select ng-model = "orderDetail.ice" ng-options = "option.value as option.name for option in iceChoice" ng-selected="orderDetail.ice">
                             </select>
                             <p>Size: </p>
-                            <select ng-model = "orderDetail.items[0].size" 
+                            <select ng-model = "orderDetail.size" 
                                     ng-options = "option.value as option.name for option in sizeChoice" 
-                                    ng-selected="orderDetail.items[0].size" 
-                                    ng-change = "changeInUpdate(orderDetail.items[0], orderDetail)">
+                                    ng-selected="orderDetail.size" 
+                                    ng-change = "change(orderDetail)">
                             </select>
                             <p>Price: </p>
-                            <p>{{orderDetail.items[0].price}}</p>
-                            <div>Number: </div> <input type = "number" ng-model = "orderDetail.items[0].number" ng-change = "changeInUpdate(orderDetail.items[0], orderDetail)" /> <br>
+                            <p>{{orderDetail.price}}</p>
+                            <div>Number: </div> <input type = "number" ng-model = "orderDetail.number" ng-change = "change(orderDetail)" /> <br>
                             <a class="btn btn-success"  ng-click="updateOrder(orderDetail)">Update</a>
                             <a class="btn btn-success"  ng-click="deleteOrder(orderDetail)">Delete</a>
                             <a class="btn btn-success"  ng-click="hideOrder()">Cancel</a>  
@@ -169,11 +169,11 @@
                             <p>Size: </p>
                             <select ng-model = "newOrder.size" 
                                     ng-options = "option.value as option.name for option in sizeChoice" 
-                                    ng-change = "changeInCreate(newOrder)">
+                                    ng-change = "change(newOrder)">
                             </select>
                             <p>Price: </p>
                             <p>{{newOrder.price}}</p>
-                            <div>Number: </div> <input type = "number" ng-model = "newOrder.number" ng-change = "changeInCreate(newOrder)" /> <br>
+                            <div>Number: </div> <input type = "number" ng-model = "newOrder.number" ng-change = "change(newOrder)" /> <br>
                             <a class="btn btn-success"  ng-click="createOrder(newOrder)">Create</a>
                             <a class="btn btn-success"  ng-click="hideOrder()">Cancel</a>  
                         </div>

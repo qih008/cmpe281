@@ -1,7 +1,7 @@
 /*jslint node: true */
 'use strict';
 var request = require('request'),
-    APIUrl = "http://localhost:4000/",
+    APIUrl = "http://ec2-54-183-154-124.us-west-1.compute.amazonaws.com:8000/",
     timestamp = require('time-stamp'),
     /* for test only */
     orderSample =
@@ -30,46 +30,37 @@ var request = require('request'),
 
 exports.getOrders = function (req, res) {
 
-    var url = APIUrl + req.params.city + "/orders";
+    var options = {headers: {"Host": req.params.city}, url: APIUrl + req.params.city + "/orders"};
     
     
     console.log("1111111");
     
-    res.send({orders: orderSample});
     
-    /*
-    
-    request({url: url}, function (err, response, body) {
+    request(options, function (err, response, body) {
         
         if (err) {
             console.log(err);
         } else {
             res.send(body);
         }
-    });   */
+    });
 };
 
 
 
 exports.getOrder = function (req, res) {
 
-    var url = APIUrl + req.params.city + "/order/" + req.params.id;
-    
-    console.log("22222");
-    
-    res.send({orders: orderSample});
+    var options = {headers: {"Host": req.params.city}, url: APIUrl + req.params.city + "/order/" + req.params.id};
     
     
-    /*
-    
-    request({url: url}, function (err, response, body) {
+    request(options, function (err, response, body) {
         
         if (err) {
             console.log(err);
         } else {
             res.send(body);
         }
-    }); */
+    });
 };
 
 
@@ -77,61 +68,59 @@ exports.createOrder = function (req, res) {
 
     var url = APIUrl + req.params.city + "/order",
         order = req.body,
-        body = {};
+        body = {},
+        options = {};
     
-    body.order = order;
-    body.timeStamp = timestamp('YYYY:MM:DD:HH:mm:ss:ms');
-    res.send();
+    order.timeStamp = timestamp('YYYY:MM:DD:HH:mm:ss:ms');
+    options = {url: url, method: "POST", json: true, body: order, headers: {"Host": req.params.city}};
     
-    /*
     
-    request({url: url, method: "POST", json: true, body: body}, function (err, response, body) {
+    request(options, function (err, response, body) {
         
         if (err) {
             console.log(err);
         } else {
             res.send(body);
         }
-    }); */
+    });
 };
 
 
 exports.updateOrder = function (req, res) {
 
     var url = APIUrl + req.params.city + "/order/" + req.params.id,
-        body = req.body;
+        body = req.body,
+        options;
     
     
-    console.log("Update Order");
+    delete body._id;
+    options = {url: url, method: "PUT", json: true, body: body, headers: {"Host": req.params.city}};
     
-    res.send();
-    
-    /*
-    
-    request({url: url, method: "PUT", json: true, body: body}, function (err, response, body) {
+    request(options, function (err, response, body) {
         
         if (err) {
             console.log(err);
         } else {
             res.send(body);
         }
-    });  */
+    });
 };
 
 exports.deleteOrder = function (req, res) {
     
-    var url = APIUrl + req.params.city + "/order/" + req.params.id;
-    res.send();
+    var url = APIUrl + req.params.city + "/order/" + req.params.id,
+        options;
     
-    /*
-    request({url: url, method: "DELETE"}, function (err, response, body) {
-        
+    options = {url: url, method: "DELETE", headers: {"Host": req.params.city}};
+    
+
+    request(options, function (err, response, body) {
         if (err) {
             console.log(err);
         } else {
             res.send(body);
         }
-    });  */
+    });
     
     
 };
