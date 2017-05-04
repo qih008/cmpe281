@@ -89,7 +89,7 @@ exports.createOrder = function (req, res) {
 
 exports.updateOrder = function (req, res) {
 
-    var url = APIUrl + req.params.city + "/order/" + req.params.id,
+    var url = APIUrl2 + req.params.city + "/order/" + req.params.id,
         body = req.body,
         options;
     
@@ -109,7 +109,7 @@ exports.updateOrder = function (req, res) {
 
 exports.deleteOrder = function (req, res) {
     
-    var url = APIUrl + req.params.city + "/order/" + req.params.id,
+    var url = APIUrl2 + req.params.city + "/order/" + req.params.id,
         options;
     
     options = {url: url, method: "DELETE", headers: {"Host": req.params.city}};
