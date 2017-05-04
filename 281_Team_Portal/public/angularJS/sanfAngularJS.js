@@ -71,7 +71,7 @@ app.controller('myCtrl', function ($scope, $http) {
     };
     
     $scope.createOrder = function (order) {
-        
+        alert(JSON.stringify(order));
         $http({
 			method : "POST",
 			url : '/San_Francisco/order',

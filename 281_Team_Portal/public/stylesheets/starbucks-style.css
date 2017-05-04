@@ -1,0 +1,85 @@
+
+      #header {
+	        margin: 0px 10%;
+	        padding: 0;
+	        height: 8%;
+	        width: 80%;
+            border-bottom:2px solid #D3D3D3;
+        }
+      #header .title {
+            position: relative;
+            text-align: left;
+            color:	#696969;
+            top: 20px;
+            font-family:"Times New Roman", Times, serif;
+            font-size:40px;
+        }
+      #container{
+          width:80%;
+          top:30px;
+          margin: 0px 10%;
+      }
+      ul {
+          float: left;
+          margin-left: 0;         
+          padding-left: 0;  
+          width: 20%;
+          list-style-type: none; 
+      }
+      
+      ul a{
+          display: block;
+          width: 200px;
+          text-align: center;
+          height: 40px;
+          line-height: 40px;
+          background: #f8f8f8;
+        }
+        
+      ul .active a, ul a:hover{
+          background: #228B22;
+          color: #ffffff;
+          font-size: 1.4em;
+      }
+      
+      #right {
+          position: relative;
+          float: right;
+          top:50px;
+          left:50px;
+          margin-right: 0;         
+          padding-right: 0;  
+          width: 20%;
+          text-align: left;
+      }
+      #center {
+          position: relative;
+          top: 50px;
+          margin: 0 auto;
+          width:60%;
+          
+      }
+      th {color: #696969;}
+      td {color: #696969;}
+      
+      #center table tr td { float: left}
+      
+      #a {
+          	float: left;
+            width: 15%;
+            height:auto;
+            margin:10px;
+      }
+      #center table tr td table tr td img{
+          width: 345px;
+      }
+      
+      #inputForm {
+          position: fixed;
+          left: 0px;
+          top: 0px;
+          height: 100%;
+          width:100%;
+          background-color:black;
+          background-color:rgba(0,0,0,0.2); 
+      }

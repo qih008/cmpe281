@@ -2,6 +2,7 @@
 'use strict';
 var request = require('request'),
     APIUrl = "http://ec2-54-183-154-124.us-west-1.compute.amazonaws.com:8000/",
+    APIUrl2 = "http://127.0.0.1:5000/",
     timestamp = require('time-stamp'),
     /* for test only */
     orderSample =
@@ -30,7 +31,7 @@ var request = require('request'),
 
 exports.getOrders = function (req, res) {
 
-    var options = {headers: {"Host": req.params.city}, url: APIUrl + req.params.city + "/orders"};
+    var options = {headers: {"Host": req.params.city}, url: APIUrl2 + req.params.city + "/orders"};
     
     
     console.log("1111111");
@@ -50,7 +51,7 @@ exports.getOrders = function (req, res) {
 
 exports.getOrder = function (req, res) {
 
-    var options = {headers: {"Host": req.params.city}, url: APIUrl + req.params.city + "/order/" + req.params.id};
+    var options = {headers: {"Host": req.params.city}, url: APIUrl2 + req.params.city + "/order/" + req.params.id};
     
     
     request(options, function (err, response, body) {
@@ -66,7 +67,7 @@ exports.getOrder = function (req, res) {
 
 exports.createOrder = function (req, res) {
 
-    var url = APIUrl + req.params.city + "/order",
+    var url = APIUrl2 + req.params.city + "/order",
         order = req.body,
         body = {},
         options = {};
