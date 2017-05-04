@@ -6,7 +6,7 @@ var express = require('express'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
     index = require('./routes/index'),
-    users = require('./routes/users'),
+    //users = require('./routes/users'),
     http = require('http'),
     session = require('client-sessions'),
     order = require('./routes/order'),
@@ -34,7 +34,7 @@ app.use(session({
 }));
 
 app.use('/', index);
-app.use('/users', users);
+//app.use('/users', users);
 
 app.get('/:city/order/:id', order.getOrder);
 app.get('/:city/orders', order.getOrders);
