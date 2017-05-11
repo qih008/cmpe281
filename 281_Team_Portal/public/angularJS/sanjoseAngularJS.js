@@ -29,7 +29,6 @@ app.controller('myCtrl', function ($scope, $http) {
             {size: "Small", price: 3.45},
             {size: "Medium", price: 4.45},
             {size: "Big", price: 5.45}
-        
         ];
     $scope.newOrder = {};
     

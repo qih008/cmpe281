@@ -63,7 +63,7 @@ app.controller('myCtrl', function ($scope, $http) {
 
             for (i = 0; i < $scope.sizePrice.length; i++) {
                 if (order.size === $scope.sizePrice[i].size) {
-                    order.price = parseFloat(($scoSan_Franciscope.sizePrice[i].price * order.number).toFixed(2));
+                    order.price = parseFloat(($scope.sizePrice[i].price * order.number).toFixed(2));
                 }
             }
         }
@@ -71,7 +71,7 @@ app.controller('myCtrl', function ($scope, $http) {
     };
     
     $scope.createOrder = function (order) {
-        alert(JSON.stringify(order));
+        //alert(JSON.stringify(order));
         $http({
 			method : "POST",
 			url : '/San_Francisco/order',
@@ -94,10 +94,10 @@ app.controller('myCtrl', function ($scope, $http) {
     
     
     $scope.updateOrder = function (order) {
-        
+        //console.log("updateOrder: " + JSON.stringify(order));
          $http({
 			method : "PUT",
-			url : '/San_Francisco/order/' + order._id,
+			url : '/San_Francisco/order/' + order.id,
             data: order
 		  }).success(function (response) {
              
@@ -117,10 +117,10 @@ app.controller('myCtrl', function ($scope, $http) {
     
     
     $scope.deleteOrder = function (order) {
-        
+        //console.log("deleteOrder: " + JSON.stringify(order));
          $http({
 			method : "DELETE",
-			url : '/San_Francisco/order/' + order._id
+			url : '/San_Francisco/order/' + order.id
 		  }).success(function(response) {
              
              $scope.hideOrder();
@@ -143,7 +143,7 @@ app.controller('myCtrl', function ($scope, $http) {
                  
                  
                  $scope.drinks = response.drinks;
-                 console.log($scope.drinks);
+                 //console.log($scope.drinks);
                  
                
 		  }).error(function(error) {
@@ -158,9 +158,9 @@ app.controller('myCtrl', function ($scope, $http) {
 			url : '/San_Francisco/orders'
 		  }).success(function(response) {
                  
-                 
-                 $scope.orders = response.orders;
-                 console.log($scope.orders);
+                 //console.log(response);
+                 $scope.orders = response;
+                 //console.log("get all orders:"+ $scope.orders);
                
 		  }).error(function(error) {
 
