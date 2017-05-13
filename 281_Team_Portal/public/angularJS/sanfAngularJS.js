@@ -72,6 +72,7 @@ app.controller('myCtrl', function ($scope, $http) {
     
     $scope.createOrder = function (order) {
         //alert(JSON.stringify(order));
+      if ((undefined != order.number) && (undefined != order.size)) {
         $http({
 			method : "POST",
 			url : '/San_Francisco/order',
@@ -89,12 +90,13 @@ app.controller('myCtrl', function ($scope, $http) {
 
             
 		  });
-        
+      }
     };
     
     
     $scope.updateOrder = function (order) {
         //console.log("updateOrder: " + JSON.stringify(order));
+      if ( 0 != order.number) {
          $http({
 			method : "PUT",
 			url : '/San_Francisco/order/' + order.id,
@@ -112,7 +114,7 @@ app.controller('myCtrl', function ($scope, $http) {
 
             
 		  });
-        
+      }
     };
     
     

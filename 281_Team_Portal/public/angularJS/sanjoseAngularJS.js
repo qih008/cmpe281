@@ -71,6 +71,8 @@ app.controller('myCtrl', function ($scope, $http) {
     
     $scope.createOrder = function (order) {
         
+        if ((undefined != order.number) && (undefined != order.size)) {
+        
         $http({
 			method : "POST",
 			url : '/San_Jose/order',
@@ -88,12 +90,14 @@ app.controller('myCtrl', function ($scope, $http) {
 
             
 		  });
+        }
         
     };
     
     
     $scope.updateOrder = function (order) {
         
+      if ( 0 != order.number) {
          $http({
 			method : "PUT",
 			url : '/San_Jose/order/' + order._id,
@@ -111,7 +115,7 @@ app.controller('myCtrl', function ($scope, $http) {
 
             
 		  });
-        
+      }
     };
     
     
