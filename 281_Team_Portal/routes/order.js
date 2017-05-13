@@ -1,7 +1,7 @@
 /*jslint node: true */
 'use strict';
 var request = require('request'),
-    APIUrl = "http://ec2-54-67-19-86.us-west-1.compute.amazonaws.com:8000/",
+    APIUrl = "http://ec2-54-183-214-201.us-west-1.compute.amazonaws.com:8000/",
     timestamp = require('time-stamp'),
     /* for test only */
     orderSample =
