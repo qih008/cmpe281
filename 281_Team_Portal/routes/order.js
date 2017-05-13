@@ -1,8 +1,7 @@
 /*jslint node: true */
 'use strict';
 var request = require('request'),
-    APIUrl = "http://ec2-54-183-214-201.us-west-1.compute.amazonaws.com:8000/",
-    APIUrl2 = "http://127.0.0.1:5000/",
+    APIUrl = "http://ec2-54-67-19-86.us-west-1.compute.amazonaws.com:8000/",
     timestamp = require('time-stamp'),
     /* for test only */
     orderSample =
@@ -31,10 +30,7 @@ var request = require('request'),
 
 exports.getOrders = function (req, res) {
 
-    var options = {headers: {"Host": req.params.city}, url: APIUrl2 + req.params.city + "/orders"};
-    
-    
-    console.log("1111111");
+    var options = {headers: {"Host": req.params.city}, url: APIUrl + req.params.city + "/orders"};
     
     
     request(options, function (err, response, body) {
@@ -51,7 +47,7 @@ exports.getOrders = function (req, res) {
 
 exports.getOrder = function (req, res) {
 
-    var options = {headers: {"Host": req.params.city}, url: APIUrl2 + req.params.city + "/order/" + req.params.id};
+    var options = {headers: {"Host": req.params.city}, url: APIUrl + req.params.city + "/order/" + req.params.id};
     
     
     request(options, function (err, response, body) {
@@ -67,7 +63,7 @@ exports.getOrder = function (req, res) {
 
 exports.createOrder = function (req, res) {
 
-    var url = APIUrl2 + req.params.city + "/order",
+    var url = APIUrl + req.params.city + "/order",
         order = req.body,
         body = {},
         options = {};
@@ -89,7 +85,7 @@ exports.createOrder = function (req, res) {
 
 exports.updateOrder = function (req, res) {
 
-    var url = APIUrl2 + req.params.city + "/order/" + req.params.id,
+    var url = APIUrl + req.params.city + "/order/" + req.params.id,
         body = req.body,
         options;
     
@@ -109,7 +105,7 @@ exports.updateOrder = function (req, res) {
 
 exports.deleteOrder = function (req, res) {
     
-    var url = APIUrl2 + req.params.city + "/order/" + req.params.id,
+    var url = APIUrl + req.params.city + "/order/" + req.params.id,
         options;
     
     options = {url: url, method: "DELETE", headers: {"Host": req.params.city}};
