@@ -24,13 +24,20 @@
                   </ul>
               </nav>
               <div id = "right">
-                  <table ng-repeat = "i in orders" style = "float: bottom; margin: 10px; width: 100%; border: 1px solid #696969;" ng-click="showOrder(i)">
-                      <tr><th>{{i.price}}</th></tr> 
+                  <h3 style="color:#696969; font-weight: bold; margin: 10px; width: 100%;"> Orders </h3>
+                  <hr>
+                  <table ng-repeat = "i in orders" style = "float: bottom; margin: 10px; width: 100%; border: 1px solid #696969;" ng-click="showOrder(i)" class="table table-striped table-hover">
+                      <tr><th>{{i.name}}</th></tr> 
+                      <tr><td>ice: {{i.ice}}</td></tr> 
+                      <tr><td>size: {{i.size}}</td></tr> 
+                      <tr><td>items: {{i.number}}</td></tr> 
+                      <tr><td>price: {{i.price}}</td></tr> 
+                      <tr><td>time: {{i.timeStamp}}</td></tr> 
                   </table>
                   
               </div>
               <div id = "center">
-                  <table ng-repeat = "i in drinks" style = "float: bottom; margin: 30px">
+                  <table ng-repeat = "i in drinks" style = "float: bottom; margin: 30px" class="table table-striped">
                       <tr><th>{{i.type}}</th></tr> 
                       <tr><td ng-repeat = "j in i.drinks" style = "float: left;  margin: 10px;">
                               <table>

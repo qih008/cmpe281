@@ -68,7 +68,8 @@ exports.createOrder = function (req, res) {
         body = {},
         options = {};
     
-    order.timeStamp = timestamp('YYYY:MM:DD:HH:mm:ss:ms');
+    //order.timeStamp = timestamp('YYYY:MM:DD:HH:mm:ss:ms');
+    order.timeStamp = timestamp('MM/DD/YYYY@HH:mm:ss');
     options = {url: url, method: "POST", json: true, body: order, headers: {"Host": req.params.city}};
     
     
