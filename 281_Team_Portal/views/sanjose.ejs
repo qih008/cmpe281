@@ -143,9 +143,9 @@
                                     ng-selected="orderDetail.size" 
                                     ng-change = "change(orderDetail)">
                             </select>
+                            <div>Number: </div> <input type = "number" ng-model = "orderDetail.number" ng-change = "change(orderDetail)" /> <br>
                             <p>Price: </p>
                             <p>{{orderDetail.price}}</p>
-                            <div>Number: </div> <input type = "number" ng-model = "orderDetail.number" ng-change = "change(orderDetail)" /> <br>
                             <a class="btn btn-success"  ng-click="updateOrder(orderDetail)">Update</a>
                             <a class="btn btn-success"  ng-click="deleteOrder(orderDetail)">Delete</a>
                             <a class="btn btn-success"  ng-click="hideOrder()">Cancel</a>  
@@ -172,9 +172,9 @@
                                     ng-options = "option.value as option.name for option in sizeChoice" 
                                     ng-change = "change(newOrder)">
                             </select>
+                            <div>Number: </div> <input type = "number" ng-model = "newOrder.number" ng-change = "change(newOrder)" /> <br>
                             <p>Price: </p>
                             <p>{{newOrder.price}}</p>
-                            <div>Number: </div> <input type = "number" ng-model = "newOrder.number" ng-change = "change(newOrder)" /> <br>
                             <a class="btn btn-success"  ng-click="createOrder(newOrder)">Create</a>
                             <a class="btn btn-success"  ng-click="hideOrder()">Cancel</a>  
                         </div>
