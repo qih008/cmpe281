@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Students</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <script src="/angularjs/studentAngularJS.js"></script>
+  </head>
+  <style>
+      #header {
+	        margin: 0px 10%;
+	        padding: 0;
+	        height: 80px;
+	        width: 80%;
+            border-bottom:2px solid #D3D3D3;
+        }
+      #header .title {
+            position: relative;
+            text-align: left;
+            color:	#696969;
+            top: 20px;
+            font-family:"Times New Roman", Times, serif;
+            font-size:20px;
+        }
+      #container{
+          width:80%;
+          top:30px;
+          margin: 0px 10%;
+      }
+      ul {
+          float: left;
+          margin-left: 0;         
+          padding-left: 0;  
+          width: 20%;
+          list-style-type: none; 
+      }
+      
+      ul a{
+          display: block;
+          width: 200px;
+          text-align: center;
+          height: 40px;
+          line-height: 40px;
+          background: #f8f8f8;
+        }
+      ul .active a, ul a:hover{
+          background: #000080;
+          color: #ffffff;
+      }
+      
+      #right {
+          position: relative;
+          float: right;
+          top:50px;
+          margin-right: 0;         
+          padding-right: 0;  
+          width: 20%;
+          text-align: center;
+      }
+      #center {
+          position: relative;
+          top: 50px;
+          margin: 0 auto;
+          width:60%;
+          
+      }
+      
+      #test {
+          height: 100px; width: 380px; 
+      }
+      
+      #submittedImage {
+          
+          width: 30%;
+          height: auto;
+          border-color: #ffffff;
+          
+      }
+
+  </style>
+  <body>
+      <div ng-app="student" ng-controller="myCtrl">
+          <div id="header">
+              <p class = "title">UML Parser Project Submission <a class="btn btn-primary" style = "float: right;" ng-click="signOut()">Sign Out</a> </p> 
+          </div>
+          <div id = "container">
+              <nav role="navigation" aria-label="context">
+                  <ul>
+
+                      <li class="active" href="/file"><a>Grades</a></li>
+
+                  </ul>
+              </nav>
+              <div id = "right"> <p></p>
+              </div>
+              <div id = "center">
+
+                  <p style="text-align: left;font-size:23px;"> UML Parser Project</p>
+                  <% if ("unsubmit" === student.status) { %>
+                      <table width = "100%" style="table-layout:fixed"> 
+                          <tr>
+                              <td style = "border-bottom:2px solid #D3D3D3;border-top:2px solid #D3D3D3;">Name: <%= student.name %></td>
+                              <td style = "border-bottom:2px solid #D3D3D3;border-top:2px solid #D3D3D3;">Status: <%= student.status %></td>
+                              <td style = "border-bottom:2px solid #D3D3D3;border-top:2px solid #D3D3D3;"> </td>
+                              <td style = "border-bottom:2px solid #D3D3D3;border-top:2px solid #D3D3D3;"> </td>
+                              <td style = "border-bottom:2px solid #D3D3D3;border-top:2px solid #D3D3D3;"> </td>
+                          </tr>
+                          <tr></tr>
+                      </table>
+                  <% } %>
+                  <% if ("submitted" === student.status) { %>
+                       <table width = "100%" style="table-layout:fixed"> 
+                          <tr>
+                              <td style = "border-bottom:2px solid #D3D3D3;border-top:2px solid #D3D3D3;">Name: <%= student.name %></td>
+                              <td style = "border-bottom:2px solid #D3D3D3;border-top:2px solid #D3D3D3;">Status: <%= student.status %></td>
+                              <td style = "border-bottom:2px solid #D3D3D3;border-top:2px solid #D3D3D3;"> </td>
+                              <td style = "border-bottom:2px solid #D3D3D3;border-top:2px solid #D3D3D3;"> </td>
+                              <td style = "border-bottom:2px solid #D3D3D3;border-top:2px solid #D3D3D3;"> </td>
+                          </tr>
+                          <tr></tr>
+                       </table>
+                       <br><br>
+                       <div style="text-align: center;">
+                           <form action="/student/<%= (student.name).replace(' ', "_") %>" method="put" onsubmit = "$window.location.reload()">
+                                   <img id = "submittedImage" src= <%= student.image_name %> /> <br>
+                                   <a href="/<%= (student.name).replace(" ", "_") %>/file/download/<%= student.zip_name %>"><%= student.zip_name %></a> <br> <br> <br>
+
+                                   Points:<input type="number" ng-model ="points"/>
+                                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Completed: <input type="radio" ng-model = "completed" value="True">True
+                                              <input type="radio" ng-model = "completed" value="False">false<br>
+                                   Comments: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                             &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                                   <input type="text" id = "test" ng-model="comments"/><br><br><br><br>
+
+                                   <a class="btn btn-primary" ng-click="submit('<%= student.name %>')">Sumbit</a>
+                            </form>
+                        </div>
+                  <% } %>
+                  <% if ("graded" === student.status) { %>
+                          <table  width = "100%" style="table-layout:fixed"> 
+                              <tr>
+                                  <td style = "border-top:2px solid #D3D3D3;">Name: <%= student.name %></td>
+                                  <td style = "border-top:2px solid #D3D3D3;">Status: <%= student.status %></td>
+                                  <td style = "border-top:2px solid #D3D3D3;">Point: <%= student.points %> </td>
+                                  <td style = "border-top:2px solid #D3D3D3;">Completed: <%= student.completed %> </td>
+                                  <td style = "border-top:2px solid #D3D3D3;"> </td>
+                              </tr>
+                              <tr><td style = "border-bottom:2px solid #D3D3D3;" colspan = "5">Comments: <%= student.comments %></td></tr>
+                          </table>
+                          <br>
+                          <img id = "submittedImage" src= <%= student.image_name %> /><br>
+                          <a href="/<%= (student.name).replace(" ", "_") %>/file/download/<%= student.zip_name %>"><%= student.zip_name %></a>
+                  <% } %>
+              </div>
+         </div>
+    </div>
+  </body>
+</html>

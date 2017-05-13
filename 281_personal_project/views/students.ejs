@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Students</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <script src="/angularjs/studentsAngularJS.js"></script>
+  </head>
+  <style>
+      #header {
+	        margin: 0px 10%;
+	        padding: 0;
+	        height: 80px;
+	        width: 80%;
+            border-bottom:2px solid #D3D3D3;
+        }
+      #header .title {
+            position: relative;
+            text-align: left;
+            color:	#696969;
+            top: 20px;
+            font-family:"Times New Roman", Times, serif;
+            font-size:20px;
+        }
+      
+      #container{
+          position: relative;
+          width:80%;
+          top: 100px;
+          margin: 0px 10%;
+          color: #696969;
+      }
+
+  </style>
+  <body>
+      <div ng-app="students" ng-controller="myCtrl">
+          <div id="header">
+             <p class = "title">UML Parser Project Submission <a class="btn btn-primary" style = "float: right;" ng-click="signOut()">Sign Out</a></p>
+          </div>
+          <div id="container">
+      
+              <table class="table table-striped">
+                  <tr>
+                      <td><p>Name</p></td>
+                      <td><p>Status</p></td>
+                      <td><p>Points</p></td>                    
+                      <td><p>completed</p></td>
+                      <td> </td>
+                  </tr>
+                  <tr ng-repeat = "i in students">
+                      <td>{{i.name}}</td>
+                      <td>{{i.status}}</td>
+                      <td>{{i.points}}</td>                    
+                      <td>{{i.completed}}</td>
+                      <td><a class="btn btn-primary" ng-click="getStudent(i.name)">Detail</a></td>
+                  </tr>
+              </table>
+            </div>
+      </div>
+  </body>
+</html>

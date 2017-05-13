@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <script src="angularjs/ng-file-upload.min.js"></script>
+    <script src="angularjs/homeAngularJS.js"></script> 
+</head>
+<body>
+    <div ng-app="home" ng-controller="myCtrl">
+        <form>
+            <label for="resource">上传文档</label>
+            <input type="file" ngf-select ng-model="file" name="file" />
+            <a class="btn btn-success" ng-click = "submit()">submit</a>
+            <img src= {{image1}} />
+            <img src= {{image2}} />
+            <img src= {{image3}} />
+            <img src= {{image4}} />
+            <img src= {{image5}} />
+        </form>
+        <a href="download/kkk">下载文件</a>
+    </div>
+</body>
+</html>

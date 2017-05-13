@@ -154,8 +154,7 @@ app.controller('myCtrl', function ($scope, $http) {
         
         $http({
 			method : "GET",
-            url : '/San_Jose/orders'
-			//url : '/San_Jose/orders'
+			url : '/San_Jose/orders'
 		  }).success(function(response) {
                  
                  
